@@ -80,11 +80,13 @@
                   </thead>
                   <tbody>
                   @foreach($pengaduan as $key=>$p)
+                    @if($p->pemilikrumah == Auth::user()->nama)
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$p->pengaduan}}</td>
                         <td>{{date('d,M Y', strtotime($p->tanggal))}}</td>
-                    </tr>    
+                    </tr>
+                    @endif
                   @endforeach  
                   </tbody>
                 </table>

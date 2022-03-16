@@ -154,4 +154,16 @@ class PendudukController extends Controller
         }
 
     }
+
+    public function history(){
+        $nama = Auth::user()->nama;
+        $history = PembayaranIuran::where('pemilikrumah','=',$nama)->get();
+
+        $response =  [
+            'pesan' => 'berhasil mendapatkan history',
+            'data' => $history,
+        ];
+
+        return response()->json($response,200);
+    }
 }

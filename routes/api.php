@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/pengaduanapi','\App\Http\Controllers\PendudukController@pengaduanapi');
-Route::get('/iuranapi','\App\Http\Controllers\PendudukController@iuranapi');
-Route::post('/iuranapi/upload/{id}','\App\Http\Controllers\PendudukController@uploadapi');
-Route::post('/pengaduanapi/tambahpengaduan','\App\Http\Controllers\PendudukController@tambahpengaduanapi');
+Route::post('/loginapi', [App\Http\Controllers\AuthController::class, 'loginapi']);
+Route::post('/registerapi', [App\Http\Controllers\AuthAPIController::class, 'register']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::get('/pengaduanapi','\App\Http\Controllers\PendudukController@pengaduanapi');
+    Route::get('/iuranapi','\App\Http\Controllers\PendudukController@iuranapi');
+    Route::post('/iuranapi/upload/{id}','\App\Http\Controllers\PendudukController@uploadapi');
+    Route::post('/pengaduanapi/tambahpengaduan','\App\Http\Controllers\PendudukController@tambahpengaduanapi');
+    Route::get('/iuranapi/history','\App\Http\Controllers\PendudukController@history');
+    // API route for logout user
+    Route::post('/logoutapi', [App\Http\Controllers\AuthController::class, 'logoutapi']);
+});
+
+
+
+
  
 

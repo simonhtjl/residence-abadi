@@ -8,6 +8,7 @@ use Session;
 use App\Models\User;
 use Alert;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,6 +23,39 @@ class AuthController extends Controller
         }else{
             return view('login');
         }
+    }
+
+    public function loginapi(Request $request){
+        $data = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        
+        $user = User::where('email', $data['email'])->first();
+
+        if(!$user || !Hash::check($data['password'],$user->password)){
+
+            return response(['message' => 'Invalid Creedentials'],401);
+
+        }else{
+            
+            $token = $user->createToken('auth_token')->plainTextToken;
+            $response = [
+                'user' => $user,
+                'token' => $token
+            ];
+
+                return response($response,200);
+        }
+
+    }
+
+    public function logoutapi(){
+        auth()->user()->tokens()->delete();
+
+        return [
+            'pesan' => 'logout berhasil'
+        ];
     }
 
     public function actionlogin(Request $request)

@@ -12,6 +12,9 @@ use App\Models\Iuran;
 use App\Models\PembayaranIuran;
 use Alert;
 use App\Notifications\ResetPasswordNotification;
+use Auth;
+use Validator;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -125,9 +128,17 @@ class AdminController extends Controller
             // $user->role = $request->role;
             // $user->save();
 
-            $user = User::create(request(['nama','email','password','role']));
+            // $user = User::create(request(['nama','email','password','role']));
+            $user = User::create([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request->role,
+             ]);
 
+            $token = $user->createToken('auth_token')->plainTextToken;
             $user->notify(new ResetPasswordNotification($user));
+
             Alert::success('Sukses', 'Menambahkan akun');
             return redirect()->back();
         }
