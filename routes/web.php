@@ -57,6 +57,13 @@ Route::group(['middleware' => ['admin']], function () {
     //User Admin
     Route::post('/admin/tambahadmin','\App\Http\Controllers\AdminController@tambahAdmin');
 
+    //iot
+    Route::get('/settinglobby','\App\Http\Controllers\IotController@settingLobby');
+    Route::post('/settinglobby/tambahSaklar','\App\Http\Controllers\IotController@tambahSaklar');
+    Route::post('/settinglobby/updateSaklar/{id}','\App\Http\Controllers\IotController@updateSaklar');
+    Route::get('/settinglobby/hapusSaklar/{id}','\App\Http\Controllers\IotController@hapusSaklar');
+    Route::post('/settinglobby/update/{id}','\App\Http\Controllers\IotController@updateLobby');
+
   });
 
   Route::group(['middleware' => ['pemilikrumah']], function () {
@@ -64,9 +71,16 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('/dashboard','\App\Http\Controllers\PendudukController@index');
         Route::get('/pengaduan','\App\Http\Controllers\PendudukController@indexPengaduan');
         Route::get('/iuran','\App\Http\Controllers\PendudukController@indexIuran');
-        Route::post('/iuran/upload/{id}','\App\Http\Controllers\PendudukController@upload');
+        Route::post('/iuran/upload/{saklar_id}','\App\Http\Controllers\PendudukController@upload');
 
         Route::post('/pengaduan/tambahpengaduan','\App\Http\Controllers\PendudukController@tambahPengaduan');
+
+      //iot
+      Route::get('/controllobby','\App\Http\Controllers\IotController@controlLobby');
+      Route::get('/controllobby/{id}','\App\Http\Controllers\IotController@powerOnOff');
+      Route::get('/jadwallobby','\App\Http\Controllers\IotController@jadwalLobby');
+      Route::post('/jadwallobby/tambahJadwal','\App\Http\Controllers\IotController@tambahJadwal');     
+      Route::get('/jadwallobby/hapusJadwal/{id}','\App\Http\Controllers\IotController@hapusJadwal');
   });
 
 

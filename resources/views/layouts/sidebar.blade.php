@@ -35,6 +35,29 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              <i class="nav-icon fas fa-wifi"></i>
+              <p>
+                Smart Devices
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/controllobby" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Control</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/jadwallobby" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Schedule</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       @else
@@ -76,7 +99,7 @@
           </li>
           <li class="nav-item">
             <a href="/daftarpengaduan" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-flag"></i>
               <p>
                 Pengaduan
               </p>
@@ -87,6 +110,14 @@
               <i class="nav-icon fas fa-money-bill-alt"></i>
               <p>
                 Iuran
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/settinglobby" class="nav-link">
+              <i class="nav-icon fas fa-wrench"></i>
+              <p>
+                Setting IoT
               </p>
             </a>
           </li>

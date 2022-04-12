@@ -105,4 +105,42 @@
 		}); 
 	});
 </script>
+<script>
+	$('.delete-saklar').click(function(){
+		  var akun = $(this).attr('akun-id');
+      var name = $(this).attr('akun-name');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus " + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "settinglobby/hapusSaklar/"+akun;
+		  } 
+		}); 
+	});
+</script>
+<script>
+	$('.delete-jadwal').click(function(){
+		  var akun = $(this).attr('akun-id');
+      var name = $(this).attr('akun-name');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus " + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "jadwallobby/hapusJadwal/"+akun;
+		  } 
+		}); 
+	});
+</script>
 </html>

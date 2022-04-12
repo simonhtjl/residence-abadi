@@ -28,6 +28,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/iuranapi/history','\App\Http\Controllers\PendudukController@history');
     // API route for logout user
     Route::post('/logoutapi', [App\Http\Controllers\AuthController::class, 'logoutapi']);
+
+    //IoT
+    Route::get('/controliotapi','\App\Http\Controllers\IotController@controlIotApi');
+    Route::get('/controliotapi/{id}','\App\Http\Controllers\IotController@powerIotApi');
+    Route::get('/jadwaliotapi','\App\Http\Controllers\IotController@jadwalIotApi');
+    Route::post('/jadwaliotapi/tambahjadwal','\App\Http\Controllers\IotController@tambahJadwalIotApi');     
+    Route::get('/jadwaliotapi/hapusjadwal/{id}','\App\Http\Controllers\IotController@hapusJadwalIotApi');
 });
 
 
